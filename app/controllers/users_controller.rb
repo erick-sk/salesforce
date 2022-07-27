@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   def index
     @user = User.new
-    @users = User.all
+    @users = User.order(dob_age: :desc)
   end
 
   def create
