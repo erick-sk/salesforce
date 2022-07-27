@@ -7,9 +7,9 @@ class UsersController < ApplicationController
   def create
     @user = User.create
     if @user.save
-      redirect_to users_path, notice: "User created"
+      redirect_to users_path, notice: "A user was successfully created."
     else
-      redirect_to new_user_path, status: :unprocessable_entity
+      render users_path, status: :unprocessable_entity, alert: "There was an error, try again."
     end
   end
 end
