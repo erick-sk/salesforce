@@ -1,0 +1,53 @@
+<h1 class="font-bold text-4xl text-center mb-4">Salesforce</h1>
+
+<% if @users.count > 0 %>
+  <div class="mb-4">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+        <tr>
+          <th scope="col" class="py-3 px-6">First Name</th>
+          <th scope="col" class="py-3 px-6">Last Name</th>
+          <th scope="col" class="py-3 px-6">Age</th>
+          <th scope="col" class="py-3 px-6">Gender</th>
+          <th scope="col" class="py-3 px-6">Email</th>
+          <th scope="col" class="py-3 px-6">Nationalidad</th>
+          <th scope="col" class="py-3 px-6">Picture</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.any? && @users.each do |user| %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              <%= user.name_first %>
+            </th>
+            <td class="py-4 px-6">
+              <%= user.name_last %>
+            </td>
+            <td class="py-4 px-6">
+              <%= user.dob_age %>
+            </td>
+            <td class="py-4 px-6">
+              <%= user.gender %>
+            </td>
+            <td class="py-4 px-6">
+              <%= user.email %>
+            </td>
+            <td class="py-4 px-6">
+              <%= user.nat %>
+            </td>
+            <td class="py-4 px-6">
+              <%= image_tag(user.picture_thumbnail) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% else %>
+  <h2 class="text-4xl mb-4">To view new users start by adding one.</h2>
+<% end %>
+
+
+<%= form_with(model: @user, local: true) do |f| %>
+  <%= f.submit "Add User", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+<% end %>
