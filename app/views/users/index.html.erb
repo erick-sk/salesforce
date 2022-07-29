@@ -47,7 +47,10 @@
   <h2 class="text-4xl mb-4">To view new users start by adding one.</h2>
 <% end %>
 
+<div class="mt-4 flex justify-between">
+  <%= form_with(model: @user, local: true) do |f| %>
+    <%= f.submit "Add User", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
+  <% end %>
 
-<%= form_with(model: @user, local: true) do |f| %>
-  <%= f.submit "Add User", class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer" %>
-<% end %>
+  <%= link_to "Export to CSV", export_user_path(@users, format: "csv"), class:"bg-red-500 hover:bg-red-600 cursor-pointer text-white font-bold py-2 px-4 rounded" %>
+</div>

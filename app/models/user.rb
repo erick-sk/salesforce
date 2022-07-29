@@ -1,4 +1,5 @@
 require 'faraday'
+require 'csv'
 
 class User < ApplicationRecord
   # Callbacks
@@ -6,6 +7,18 @@ class User < ApplicationRecord
 
   # Validates
   validates :name_first, :name_last, :dob_age, :gender, :email, :nat, :picture_thumbnail, presence: true
+
+  # CSV
+  def self.to_csv
+    users = all
+
+    CSV.generate do |csv|
+      csv << column_names
+      users.each do |user|
+        csv << user.attributes.values_at(*column_names)
+      end
+    end
+  end
 
   private
 

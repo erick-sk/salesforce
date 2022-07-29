@@ -77,4 +77,8 @@ group :test do
   gem "webdrivers"
 end
 
+# Faraday
 gem "faraday", "~> 2.3"
+
+# CSV
+gem 'csv'
